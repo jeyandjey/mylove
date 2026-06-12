@@ -1,0 +1,339 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slide de Fotos</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      padding: 16px;
+      background: #7a1f2b;
+      font-family: Arial, sans-serif;
+    }
+
+    .spotify-player {
+      width: min(100%, 420px);
+      height: 120px;
+      border: 0;
+      border-radius: 12px;
+    }
+
+    .mensagem {
+      width: min(100%, 720px);
+      max-height: 420px;
+      overflow-y: auto;
+      padding: 22px;
+      border: 1px solid #6d1a27;
+      border-radius: 8px;
+      background: #3f0711;
+      color: #fff4f4;
+      box-shadow: 0 14px 34px rgba(33, 0, 7, 0.45);
+      line-height: 1.7;
+    }
+
+    .mensagem p {
+      margin: 0 0 16px;
+    }
+
+    .mensagem p:last-child {
+      margin-bottom: 0;
+    }
+
+    .slider {
+      position: relative;
+      width: min(100%, 360px);
+      height: clamp(390px, calc(100vh - 190px), 560px);
+      overflow: hidden;
+      border-radius: 8px;
+      background: #000;
+    }
+
+    .contador {
+      width: min(100%, 360px);
+      color: #fff;
+      text-align: center;
+    }
+
+    .contador-titulo {
+      margin: 0 0 8px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .contador-tempo {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .slides {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s ease-in-out;
+    }
+
+    .slide {
+      flex: 0 0 100%;
+      width: 100%;
+      height: 100%;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 64px;
+      border: none;
+      background: transparent;
+      color: white;
+      font-size: 34px;
+      cursor: pointer;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    }
+
+    .btn:hover {
+      color: #ddd;
+    }
+
+    .prev {
+      left: 4px;
+    }
+
+    .next {
+      right: 4px;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        justify-content: flex-start;
+        gap: 14px;
+        padding: 12px;
+      }
+
+      .spotify-player {
+        height: 96px;
+      }
+
+      .mensagem {
+        max-height: 300px;
+        padding: 16px;
+        font-size: 14px;
+      }
+
+      .slider {
+        width: 100%;
+        max-width: 340px;
+        height: clamp(420px, calc(100vh - 140px), 540px);
+      }
+
+      .contador {
+        max-width: 340px;
+      }
+
+      .contador-titulo {
+        font-size: 17px;
+      }
+
+      .contador-tempo {
+        font-size: 15px;
+      }
+
+      .btn {
+        width: 42px;
+        height: 58px;
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <iframe
+    class="spotify-player"
+    src="https://open.spotify.com/embed/track/5c12DVTlsyFbxmysLw0Vll?utm_source=generator&si=9b118ce313e14dda"
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    loading="lazy">
+  </iframe>
+
+
+
+  <div class="slider">
+    <div class="slides">
+      <div class="slide">
+        <img src="./fotos/foto1.jpeg" alt="Foto 1">
+      </div>
+
+      <div class="slide">
+        <img src="./fotos/foto2.jpeg" alt="Foto 2">
+      </div>
+
+      <div class="slide">
+        <img src="./fotos/foto3.jpeg" alt="Foto 3">
+      </div>
+
+      <div class="slide">
+        <img src="./fotos/foto4.jpeg" alt="Foto 4">
+      </div>
+
+      <div class="slide">
+        <img src="./fotos/foto5.jpeg" alt="Foto 5">
+      </div>
+
+      <div class="slide">
+        <img src="./fotos/foto6.jpeg" alt="Foto 6">
+      </div>
+
+      <div class="slide">
+        <img src="./fotos/foto7.jpeg" alt="Foto 7">
+      </div>
+
+      <div class="slide">
+        <img src="./fotos/foto8.jpeg" alt="Foto 8">
+      </div>
+
+      <div class="slide">
+        <img src="./fotos/foto9.jpeg" alt="Foto 9">
+      </div>
+
+      <div class="slide">
+        <img src="./fotos/foto10.jpeg" alt="Foto 10">
+      </div>
+
+      <div class="slide">
+        <img src="./fotos/foto11.jpeg" alt="Foto 11">
+      </div>
+
+      <div class="slide">
+        <img src="./fotos/foto12.jpeg" alt="Foto 12">
+      </div>
+    </div>
+
+    <button class="btn prev" type="button" onclick="mudarSlide(-1)" aria-label="Foto anterior">&#10094;</button>
+    <button class="btn next" type="button" onclick="mudarSlide(1)" aria-label="Proxima foto">&#10095;</button>
+  </div>
+
+  <div class="contador">
+    <p class="contador-titulo">Estamos juntos há</p>
+    <p class="contador-tempo" id="contadorNamoro"></p>
+  </div>
+
+   <div class="mensagem">
+    <p>Meu amor, te dedico essa música porque ela define o que eu penso do nosso relacionamento. No começo eu não me achava merecedora e nem achava que existiria alguém que me amaria tanto quanto você me ama. Sempre me achei uma pessoa difícil de se amar, seja pela minha aparência ou pela minha personalidade.</p>
+    <p>De repente a dor
+De esperar terminou
+E o amor veio enfim
+Eu que sempre sonhei
+Mas não acreditei
+Muito em mim
+Vi o tempo passar
+O inverno chegar
+Outra vez, mas desta vez
+Todo pranto sumiu
+Um encanto surgiu
+Meu amo
+</p>
+    <p>
+Quando o Tim canta essa parte, eu me imagino antes da gente se conhecer e de eu ter qualquer tipo de suporte emocional, a dor de esperar e o inverno que vem, esse frio e essa dor de se sentir sozinha e não amada, e quando você chega na minha vida, tudo melhora, eu ainda tenho meus epiodeos mas agora eu tinha o seu apoio para me ajudar.
+</p>
+    <p>E você é realmente  mais do que sei
+É mais que pensei
+É mais que esperava,  meu amor. Você foi uma das melhores coisas que aconteceu na minha vida, você é uma das pessoas mais incriveis, amorosas, engraçadas (de vez em nunca claro), era tudo o que eu precisava e ainda preciso. Meu bem, assim como o Tim implora na musica, por favor não va embora, fique comigo para sempre, veja eu mudar por nos, veja a gente tendo um  futuro incrivel juntos, conquistando tudo o que sempre quisemos. 
+<br>
+<br>
+Eu te amo.
+</p>
+  </div>
+
+  <script>
+    let slideAtual = 0;
+    const faixaSlides = document.querySelector(".slides");
+    const slides = document.querySelectorAll(".slide");
+    const contadorNamoro = document.querySelector("#contadorNamoro");
+    const inicioNamoro = new Date(2023, 8, 15, 0, 0, 0);
+
+    function mostrarSlide(index) {
+      if (index >= slides.length) {
+        slideAtual = 0;
+      } else if (index < 0) {
+        slideAtual = slides.length - 1;
+      } else {
+        slideAtual = index;
+      }
+
+      faixaSlides.style.transform = `translateX(-${slideAtual * 100}%)`;
+    }
+
+    function mudarSlide(direcao) {
+      mostrarSlide(slideAtual + direcao);
+    }
+
+    setInterval(() => {
+      mudarSlide(1);
+    }, 3000);
+
+    function calcularTempoNamoro() {
+      const agora = new Date();
+      let anos = agora.getFullYear() - inicioNamoro.getFullYear();
+      let meses = agora.getMonth() - inicioNamoro.getMonth();
+      let dias = agora.getDate() - inicioNamoro.getDate();
+      let horas = agora.getHours() - inicioNamoro.getHours();
+      let minutos = agora.getMinutes() - inicioNamoro.getMinutes();
+      let segundos = agora.getSeconds() - inicioNamoro.getSeconds();
+
+      if (segundos < 0) {
+        segundos += 60;
+        minutos--;
+      }
+
+      if (minutos < 0) {
+        minutos += 60;
+        horas--;
+      }
+
+      if (horas < 0) {
+        horas += 24;
+        dias--;
+      }
+
+      if (dias < 0) {
+        const ultimoDiaMesAnterior = new Date(agora.getFullYear(), agora.getMonth(), 0).getDate();
+        dias += ultimoDiaMesAnterior;
+        meses--;
+      }
+
+      if (meses < 0) {
+        meses += 12;
+        anos--;
+      }
+
+      contadorNamoro.textContent =
+        `${anos} anos, ${meses} meses, ${dias} dias, ` +
+        `${horas} horas, ${minutos} minutos e ${segundos} segundos`;
+    }
+
+    calcularTempoNamoro();
+    setInterval(calcularTempoNamoro, 1000);
+  </script>
+</body>
+</html>
+
